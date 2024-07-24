@@ -1,0 +1,287 @@
+type GetCourseResponse {
+  message: String
+  success: Boolean
+  status: Int
+  data: [Course]
+}
+
+type GetCertificatesResponse{
+  message: String
+  success: Boolean
+  status: Int
+  data: [Certificate]
+}
+
+type GetUserDetailByUserIdResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: User
+}
+type CheckUserEmailResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  is_email_sent: Boolean!
+  data: User
+  isMHA: Boolean!
+  learnUponUserId: String
+  isInvited: Boolean
+  courseId: Int
+  learnerStatus: String
+  lmsCourseId: Int
+  waivePreCheck: Boolean
+  isProfileCompleted: Boolean
+}
+type GetQuestionByCourseResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [Question]
+  course_name: String
+}
+
+type CheckUserDetailsResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  token: String
+  data: User
+}
+
+type registrationResponse {
+  id: Int
+  email: String
+  is_active: Boolean
+  is_council_member: String
+}
+
+type erroMessage {
+  isError: Boolean
+  message: String
+  text: String
+}
+
+type UserRegistrationResponse {
+  message: [erroMessage]
+  success: Boolean!
+  status: Int
+  token: String
+  data: registrationResponse
+}
+
+type AssessmentResponseData {
+  id: Int
+  status: statusType
+  course: Course
+  start_time: String
+  end_time: String
+  user_id: Int
+}
+
+type AssessmentLogResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: AssessmentResponseData
+}
+
+type ResendOtpResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  is_email_sent: Boolean
+}
+
+type VerifyOtpResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+}
+
+type GetAssestmentResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [AssessmentLog]
+}
+
+type EnrollmentResponse {
+  id: Int
+  course_id: Int
+  course_source_id: Int
+  version: Int
+  user_id: Int
+  percentage: String
+  has_attempts_remaining: Boolean
+  date_started: String
+  date_completed: String
+  date_lastaccessed: String
+  date_enrolled: String
+  course_name: String
+  first_name: String
+  last_name: String
+  email: String
+  certificate_name: String
+  percentage_complete: String
+  unenrolled: Boolean
+  due_date: String
+  cert_expires_at: String
+  course_access_expires_at: String
+  status: String
+  was_recertified: Boolean
+}
+
+type GetUserEnrollmentResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [Course]
+}
+
+type IntegrateShopifyResponse {
+  message: [erroMessage]
+  success: Boolean
+  status: Int
+  data: Int
+  error: String
+}
+
+type CheckAdminOrRequestEmailResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  isMHA: Boolean
+  data: User
+}
+
+type AssessmentProgressResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: AssessmentProgressData
+}
+type AllAssessmentProgressResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [AssessmentProgressData]
+}
+
+type InstructorTrainingRequestResponse {
+  message: String!
+  success: Boolean!
+  data: [requests]
+  error: String
+}
+type commonResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+}
+
+type LMSCourseResponse {
+  message: String!
+  success: Boolean!
+  data: [lmsCourse]
+  error: String
+}
+
+type TrainingListResponse {
+  message: String!
+  success: Boolean!
+  data: [training]
+  error: String
+}
+
+type InstructorTrainingRequestBYIdResponse {
+  message: String!
+  success: Boolean!
+  data: requests
+  error: String
+}
+
+type LearnerListResponse {
+  message: String!
+  success: Boolean!
+  data: [learners]
+  error: String
+}
+
+type TrainingDetailsResponse {
+  message: String!
+  success: Boolean!
+  data: training
+  error: String
+}
+
+type CheckLMSUserResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+}
+
+type InvitedUserResultResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: InvitedUserData
+}
+
+type CheckCRMResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  iSCRM: Boolean
+  crmPassedCourses: [Course]
+}
+
+type GetCandidateResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: [Candidate]
+}
+
+type GetCandidateDetailsResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  candidateData: Candidate
+  AssessmentData: [AssessmentLog]
+}
+
+type GetUserLogsResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: [UserLogs]
+}
+
+type SupportResponse {
+  message: String
+  success: Boolean!
+  status: Int
+  error:String
+}
+
+type GetCertificationResponse {
+  message: String
+  success: Boolean!
+  status: Int
+  data: userCertificate
+}
+
+type GetSupportResponse {
+  message: String
+  success: Boolean!
+  status: Int
+  data: [Support]
+}

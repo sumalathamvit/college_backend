@@ -1,0 +1,77 @@
+type Course {
+  id: Int
+  name: String
+  description: String
+  Active: Boolean
+  created_at: String
+  updated_at: String
+}
+
+type Certificate{
+  id: Int
+  name: String
+  status: String
+  course_id: Int
+  created_at: String
+  updated_at: String
+  term: String
+}
+
+type userCertificate{
+  id: Int
+  certificate_status: String
+  user_id: Int
+  created_at: String
+  updated_at: String
+  start_date: String
+  expire_date: String
+  certificate_id: Int
+}
+
+enum statusType {
+  Accepted
+  Rejected
+  Submission
+  Failed
+}
+
+type AssessmentLog {
+  id: Int
+  status: statusType
+  course_id: Int
+  user_id: Int
+  start_time: String
+  end_time: String
+  reassessment_date: String
+  assessment_score:Int
+  course: Course
+  is_profile_completed: Boolean
+}   
+ 
+input ProgressAnswer{
+  question_id: Int
+  answer:[String]
+}
+type ProgressAnswerRes{
+  question_id: Int
+  answer:[String]
+}
+
+input AssessmentInput {
+  questionNumber: Int
+  question_id: Int
+  answer: [String]
+  start_time: String
+  end_time: String
+  question_points: Int
+}
+type AssessmentProgressData {
+  question_id: Int
+  course_id:Int 
+  user_id:Int 
+  isCompleted: Boolean
+  answers:[ProgressAnswerRes]
+  questionNumber:Int
+  start_time:String
+}
+

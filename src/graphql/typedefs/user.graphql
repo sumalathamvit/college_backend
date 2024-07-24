@@ -1,0 +1,64 @@
+type User {
+  id: Int
+  first_name: String
+  last_name: String
+  otp: String
+  email: String
+  is_council_member: String
+  is_email_verified: Boolean
+  phone_number: String
+  isActive: Boolean
+  created_date: String
+  updated_date: String
+  is_active: Boolean
+  mhfa_connect: String
+  addressline1: String
+  addressline2: String
+  state: String
+  city: String
+  zipcode: String
+  mfa_options: String
+  is_part_of_organization: Boolean
+  organization: String
+  job_title: String
+  get_news_letter: Boolean
+  public_profile: String
+  dietary_restrictions: String
+  describe_dietary_restrictions: String
+  isMHA: Boolean
+}
+
+type Support {
+  id: Int
+  first_name: String
+  last_name: String
+  state: String
+  is_deleted: Boolean
+}
+
+type OtpVerify {
+  isVerified: Boolean
+}
+
+type userRole {
+  id: Int
+  role: String
+}
+
+type logs {
+  log_date: String
+  log_type: String
+  log_module: String
+  log_description: String
+}
+
+type UserLogs {
+  id: Int
+  user_id: Int
+  log_type: String
+  log_module: String
+  log_description: String
+  timestamp: String
+}
+
+

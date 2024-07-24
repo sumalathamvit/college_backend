@@ -1,0 +1,512 @@
+type Query {
+  GetCourse: GetCourseResponse
+  GetCertificates: GetCertificatesResponse
+  CheckUserDetails(
+    email: String!
+    password: String!
+    userType: String!
+  ): CheckUserDetailsResponse
+  GetUserDetailByUserId(user_id: Int!): GetUserDetailByUserIdResponse
+  GetAssestment(email: String!): GetAssestmentResponse
+  GetQuestionByCourse(id: Int!): GetQuestionByCourseResponse
+  GetAssessmentDetail(assessment_id: Int!): [AssessmentDetail]
+  CheckUserIsCeritifiedMHFA(
+    email: String!
+    course_id: Int
+  ): GetUserEnrollmentResponse
+  GetAssessmentProgress(
+    user_id: Int
+    course_id: Int
+  ): AssessmentProgressResponse
+  GetAllAssessmentProgress(user_id: Int): AllAssessmentProgressResponse
+  GetInstructorTrainingRequest: InstructorTrainingRequestResponse
+  GetLMSCourse: LMSCourseResponse
+  GetTrainingList(request_id: Int!): TrainingListResponse
+  GetTrainingDetails(training_id: Int): TrainingDetailsResponse
+  GetInstructorTrainingRequestBYId(
+    request_id: Int!
+  ): InstructorTrainingRequestBYIdResponse
+  GetLearnerList(training_id: Int!): LearnerListResponse
+  CheckLMSUser(email: String): CheckLMSUserResponse
+  GetInvitedUserResult(
+    invitationId: Int
+    userId: Int
+  ): InvitedUserResultResponse
+  GetCandidate(
+    searchTerm: String
+    orderField: String
+    orderDirection: String
+  ): GetCandidateResponse
+  GetCandidateDetails(id: Int): GetCandidateDetailsResponse
+  GetUserLogs(
+    user_id: Int
+    start_date: String
+    end_date: String
+    limit: Int
+  ): GetUserLogsResponse
+  GetRequestOfRequester(requester_id: Int): GetRequestOfRequesterResponse
+  GetSupport: GetSupportResponse
+}
+
+type Mutation {
+  userRegistration(
+    email: String!
+    firstName: String!
+    lastName: String
+    phoneNumber: String
+    mhfaConnect: String
+    addressline1: String
+    addressline2: String
+    state: String
+    city: String
+    zipcode: String
+    mfaOptions: String
+    isPartOfOrganization: Boolean
+    organization: String
+    jobTitle: String
+    getNewsletter: Boolean
+    publicProfile: Boolean
+    dietaryRestrictions: String
+    describeDietaryRestrictions: String
+    password: String
+    confirmPassword: String
+    tag: String
+    lmsCourseId: Int
+  ): UserRegistrationResponse
+
+  CreateSupport(
+    firstName: String
+    lastName: String
+    email: String!
+    state: String
+  ): SupportResponse
+
+  UpdateSupport(
+    firstName: String
+    lastName: String
+    email: String
+    state: String
+    support_id: Int
+  ): SupportResponse
+
+  DeleteSupport(support_id: Int): SupportResponse
+
+  IntegrateShopify(email: String): IntegrateShopifyResponse
+  getCertification(certificate_id: Int, user_id: Int): GetCertificationResponse
+
+  deleteUser(id: String): User
+
+  ResendOtp(email: String!): ResendOtpResponse
+  VerifyOtp(email: String!, otp: String!, userType: String): VerifyOtpResponse
+  CheckUserEmail(
+    email: String!
+    mappingId: Int
+    userId: Int
+  ): CheckUserEmailResponse
+  CheckAdminOrRequestEmail(
+    email: String!
+    role_id: Int
+  ): CheckAdminOrRequestEmailResponse
+
+  CreateOrUpdateUserLog(
+    log_module: String
+    log_description: String
+    user_id: Int
+  ): commonResponse
+
+  updateAssestment_log(
+    email: String
+    course_id: Int
+    inputData: [AssessmentInput]
+    reassessment_date: String
+  ): AssessmentLogResponse
+
+  UpdateCandidateStatus(
+    course_id: Int
+    user_id: Int
+    status: String
+  ): commonResponse
+
+  createAssessment_progress(
+    question_id: Int
+    course_id: Int
+    user_id: Int
+    isCompleted: Boolean
+    questionNumber: Int
+    answer: [ProgressAnswer]
+    start_time: String
+  ): AssessmentProgressResponse
+
+  createRequest(
+    email: String!
+    firstName: String!
+    lastName: String!
+    phoneNumber: String
+    addressline1: String
+    state: String
+    city: String
+    zipcode: String
+    organization: String
+    jobTitle: String
+    instructorTrainingCount: String
+    trainingType: String
+    isNationalCouncilMember: String
+    status: String
+    submissionDate: String
+    haveFunding: String
+    intrested_training: [String]
+    maxTraining: Int
+  ): commonResponse
+
+  createTraining(
+    max_learner: Int
+    request_id: Int
+    status: String
+    training_type: String
+    course_id: Int
+    training_course_id: Int
+    start_date: String
+    end_date: String
+    start_time: String
+    end_time: String
+    time_zone: String
+    address: String
+    state: String
+    city: String
+    zipcode: String
+    location: String
+    notes: String
+  ): commonResponse
+
+  inviteLearner(
+    firstName: String
+    lastName: String
+    email: String
+    training_id: Int
+    waivePrecheck: Boolean
+  ): commonResponse
+
+  inviteAllLearner(training_id: Int): commonResponse
+
+  updateTraining(
+    max_learner: Int
+    status: String
+    course_id: Int
+    training_id: Int
+    start_date: String
+    end_date: String
+    start_time: String
+    end_time: String
+    time_zone: String
+    address: String
+    state: String
+    city: String
+    zipcode: String
+    location: String
+    notes: String
+  ): commonResponse
+
+  WaivePreCheck(certificate_id: Int, user_id: Int): commonResponse
+
+  updateRequest(
+    email: String!
+    firstName: String!
+    lastName: String!
+    phoneNumber: String
+    addressline1: String
+    state: String
+    city: String
+    zipcode: String
+    organization: String
+    jobTitle: String
+    instructorTrainingCount: String
+    trainingType: String
+    isNationalCouncilMember: String
+    status: String
+    submissionDate: String
+    haveFunding: String
+    request_id: Int
+    intrested_training: [String]
+    maxTraining: Int
+  ): commonResponse
+
+  updateLearner(
+    firstName: String
+    lastName: String
+    status: String
+    learner_id: Int
+  ): commonResponse
+
+  deleteRequestUser(email: String): commonResponse
+  deleteTrainig(training_id: Int!): commonResponse
+  deleteLearner(learner_id: Int): commonResponse
+  reInviteLearner(learner_id: Int): commonResponse
+
+  inviteMultipleLeaner(csvData: csvInput, training_id: Int): commonResponse
+  CheckCRM(email: String): CheckCRMResponse
+}
+
+type GetCourseResponse {
+  message: String
+  success: Boolean
+  status: Int
+  data: [Course]
+}
+
+type GetUserDetailByUserIdResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: User
+}
+type CheckUserEmailResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  is_email_sent: Boolean!
+  data: User
+  isMHA: Boolean!
+  learnUponUserId: String
+  isInvited: Boolean
+  courseId: Int
+  learnerStatus: String
+  lmsCourseId: Int
+  waivePreCheck: Boolean
+  isProfileCompleted: Boolean
+}
+type GetQuestionByCourseResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [Question]
+  course_name: String
+}
+type GetAllUserResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [User]
+}
+
+type CheckUserDetailsResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  token: String
+  data: User
+}
+
+type registrationResponse {
+  id: Int
+  email: String
+  is_active: Boolean
+  is_council_member: String
+}
+
+type erroMessage {
+  isError: Boolean
+  message: String
+  text: String
+}
+
+type UserRegistrationResponse {
+  message: [erroMessage]
+  success: Boolean!
+  status: Int
+  token: String
+  data: registrationResponse
+}
+
+type AssessmentResponseData {
+  id: Int
+  status: statusType
+  course: Course
+  start_time: String
+  end_time: String
+  user_id: Int
+}
+
+type AssessmentLogResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: AssessmentResponseData
+}
+
+type ResendOtpResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  is_email_sent: Boolean
+}
+
+type VerifyOtpResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+}
+
+type GetAssestmentResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [AssessmentLog]
+}
+
+type EnrollmentResponse {
+  id: Int
+  course_id: Int
+  course_source_id: Int
+  version: Int
+  user_id: Int
+  percentage: String
+  has_attempts_remaining: Boolean
+  date_started: String
+  date_completed: String
+  date_lastaccessed: String
+  date_enrolled: String
+  course_name: String
+  first_name: String
+  last_name: String
+  email: String
+  certificate_name: String
+  percentage_complete: String
+  unenrolled: Boolean
+  due_date: String
+  cert_expires_at: String
+  course_access_expires_at: String
+  status: String
+  was_recertified: Boolean
+}
+
+type GetUserEnrollmentResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [Course]
+}
+
+type IntegrateShopifyResponse {
+  message: [erroMessage]
+  success: Boolean
+  status: Int
+  data: Int
+  error: String
+}
+
+type CheckAdminOrRequestEmailResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  isMHA: Boolean
+}
+
+type AssessmentProgressResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: AssessmentProgressData
+}
+type AllAssessmentProgressResponse {
+  message: String!
+  success: Boolean!
+  status: Int
+  data: [AssessmentProgressData]
+}
+
+type InstructorTrainingRequestResponse {
+  message: String!
+  success: Boolean!
+  data: [requests]
+  error: String
+}
+type commonResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+}
+
+type LMSCourseResponse {
+  message: String!
+  success: Boolean!
+  data: [lmsCourse]
+  error: String
+}
+
+type TrainingListResponse {
+  message: String!
+  success: Boolean!
+  data: [training]
+  error: String
+}
+
+type InstructorTrainingRequestBYIdResponse {
+  message: String!
+  success: Boolean!
+  data: requests
+  error: String
+}
+
+type LearnerListResponse {
+  message: String!
+  success: Boolean!
+  data: [learners]
+  error: String
+}
+
+type TrainingDetailsResponse {
+  message: String!
+  success: Boolean!
+  data: training
+  error: String
+}
+
+type CheckLMSUserResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+}
+
+type InvitedUserResultResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: InvitedUserData
+}
+
+type CheckCRMResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  iSCRM: Boolean
+  crmPassedCourses: [Course]
+}
+
+type GetCandidateResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: [Candidate]
+}
+
+type GetCandidateDetailsResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  candidateData: Candidate
+  AssessmentData: [AssessmentLog]
+}
+
+type GetRequestOfRequesterResponse {
+  message: String!
+  success: Boolean!
+  error: String
+  status: Int
+  data: [requests]
+}

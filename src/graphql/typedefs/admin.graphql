@@ -1,0 +1,99 @@
+type requests {
+  id: Int
+  email: String
+  organization: String
+  training_type: String
+  status: String
+  submission_date: String
+  created_at: String
+  updated_at: String
+  first_name: String
+  last_name: String
+  job_title: String
+  phone_number: String
+  city: String
+  state: String
+  zipcode: String
+  addressline1: String
+  isNationalCouncilMember: String
+  instructorTrainingCount: Int
+  intrested_training: [String]
+  max_training: Int
+  have_funding: String
+}
+
+input MultipleCSVInput {
+  id: String
+  first_name: String
+  last_name: String
+  email: String
+  waive_pre_check: Boolean
+}
+
+input csvInput {
+  csvData: [MultipleCSVInput]
+}
+
+type training {
+  id: Int
+  training_type: String
+  status: String
+  created_at: String
+  updated_at: String
+  lms_course_id: Int
+  request_id: String
+  max_learner: Int
+  training_course_id: Int
+  start_date: String
+  end_date: String
+  start_time: String
+  end_time: String
+  time_zone: String
+  address: String
+  state: String
+  city: String
+  zipcode: String
+  location: String
+  notes: String
+}
+
+type lmsCourse {
+  id: Int
+  name: String
+  source_id: Int
+  keywords: String
+  number_of_modules: Int
+  owner_first_name: String
+  owner_last_name: String
+  owner_email: String
+  owner_id: Int
+  created_at: String
+  date_published: String
+  description_text: String
+  difficulty_level: String
+}
+
+type learners {
+  id: Int
+  email: String
+  first_name: String
+  last_name: String
+  status: String
+  created_at: String
+  updated_at: String
+  user_id:Int
+  waive_pre_check: Boolean
+}
+
+type InvitedUserData {
+  id: Int
+  status: String
+  training_id: Int
+}
+
+type Candidate {
+  last_name: String
+  first_name: String
+  email: String
+  id: Int
+}

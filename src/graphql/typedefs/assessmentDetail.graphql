@@ -1,0 +1,15 @@
+type AssessmentDetail {
+  id: Int
+  assessment_id: Int
+  qn_type: Int
+  qn: String
+  opt1: String
+  opt2: String
+  opt3: String
+  opt4: String
+  answer: String
+  opt_right: Int
+  weightage: Int
+  status: Int
+  creation: String
+}

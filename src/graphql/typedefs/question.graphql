@@ -1,0 +1,19 @@
+scalar JSONB
+
+enum QuestionType {
+  radio
+  checkbox
+}
+
+type Question {
+  id: Int
+  name: String
+  type: QuestionType
+  question_points:Int
+  course_id: Int
+  Active: Boolean
+  options: JSONB
+  courseId: Int
+  created_date: String
+  updated_date: String
+}
